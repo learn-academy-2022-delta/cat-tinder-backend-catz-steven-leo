@@ -4,8 +4,14 @@ RSpec.describe "Cats", type: :request do
 
   describe "GET /index" do
     it "gets a list of cats" do 
-      Cat.create( #put cat model info in here once seed issues are
-
+      Cat.create( 
+        name: "Aleksis",
+        age: 10,
+        status: "Married", 
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
       )
 
       get "/cats"
@@ -19,19 +25,26 @@ RSpec.describe "Cats", type: :request do
     it "creates a cat" do 
       cat_params = {
         cat: {
-          #copy above info from line 6 - cat information
+          name: "Aleksis",
+          age: 10,
+          status: "Married", 
+          looking_for: "Companionship", 
+          about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+          hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+          image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
         }
       }
 
       post "/cats", params: cat_params
       expect(response).to have_http_status(200)
       cat = Cat.first 
-      expect(cat.name).to eq 'name from above'
-      expec(cat.age).to eq ''
-      expect(cat.status).to eq ''
-      expect(cat.looking_for).to eq ''
-      expect(cat.about_me).to eq ''
-      expect(cat.hobbies).to eq ''
+      expect(cat.name).to eq "Aleksis"
+      expect(cat.age).to eq 10
+      expect(cat.status).to eq "Married"
+      expect(cat.looking_for).to eq "Companionship"
+      expect(cat.about_me).to eq "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks."
+      expect(cat.hobbies).to eq "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones"
+      expect(cat.image).to eq "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
       
     end 
   end
@@ -40,7 +53,13 @@ RSpec.describe "Cats", type: :request do
     it "updates a cat profile" do
       cat_params = {
         cat: {
-          #copy above info from line 6 - cat information
+          name: "Aleksis",
+          age: 10,
+          status: "Married", 
+          looking_for: "Companionship", 
+          about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+          hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+          image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
         }
       }
 
@@ -48,14 +67,20 @@ RSpec.describe "Cats", type: :request do
       cat = Cat.first
       updated_cat_params = {
         cat: {
-          #copy above info from line 6 - but we update something in cat information
+          name: "Aleksis",
+          age: 11,
+          status: "Married", 
+          looking_for: "Companionship", 
+          about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+          hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+          image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
         }
       }
       
       patch "/cats/#{cat.id}", params: updated_cat_params
-      updated_cat = Cat.Find(cat.id)
+      updated_cat = Cat.find(cat.id)
       expect(response).to have_http_status(200)
-      expect(updated_cat.?).to eq ? <<updated param
+      expect(updated_cat.age).to eq 11
     end
   end
 
@@ -63,7 +88,13 @@ RSpec.describe "Cats", type: :request do
     it "deletes a cat profile" do
       cat_params = {
         cat: {
-          #copy above info from line 6 - cat information
+          name: "Aleksis",
+          age: 10,
+          status: "Married", 
+          looking_for: "Companionship", 
+          about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+          hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+          image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
         }
       }
     post "/cats", params: cat_params
