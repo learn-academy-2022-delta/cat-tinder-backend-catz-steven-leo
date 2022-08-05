@@ -105,4 +105,134 @@ RSpec.describe "Cats", type: :request do
     expect(cats).to be_empty 
     end
   end
+
+ #--------------------------Added on Aug 5, 2022-----------------------------------------
+ describe "cannot create a cat without valid attributes" do
+  it "doesn't create a cat without a name" do
+    cat_params = {
+      cat: {
+        age: 10,
+        status: "Married", 
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+   post '/cats', params: cat_params
+   expect(response.status). to eq 422
+   cat = JSON.parse(response.body)
+   expect(cat['name']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a age" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        status: "Married", 
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+   post '/cats', params: cat_params
+   expect(response.status). to eq 422
+   cat = JSON.parse(response.body)
+   expect(cat['age']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a status" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        age: 10,
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+    post '/cats', params: cat_params
+    expect(response.status). to eq 422
+    cat = JSON.parse(response.body)
+    expect(cat['status']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a looking for" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        age: 10,
+        status: "Married", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+    post '/cats', params: cat_params
+    expect(response.status). to eq 422
+    cat = JSON.parse(response.body)
+    expect(cat['looking_for']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a about me" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        age: 10,
+        status: "Married", 
+        looking_for: "Companionship", 
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+    post '/cats', params: cat_params
+    expect(response.status). to eq 422
+    cat = JSON.parse(response.body)
+    expect(cat['about_me']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a hobbies" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        age: 10,
+        status: "Married", 
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.", 
+        image: "https://images.hdqwalls.com/download/cheetah-close-up-ml-1920x1080.jpg"
+     }
+   }
+
+    post '/cats', params: cat_params
+    expect(response.status). to eq 422
+    cat = JSON.parse(response.body)
+    expect(cat['hobbies']).to include "can't be blank"
+  end
+
+  it "doesn't create a cat without a image" do
+    cat_params = {
+      cat: {
+        name: "Aleksis",
+        age: 10,
+        status: "Married", 
+        looking_for: "Companionship", 
+        about_me: "If life were a box of chocolates, lets just say I've been through the whole box. At this point, I'm looking for adventure and new sparks.",
+        hobbies: "Art of garnishing, Performing at the local community theatre, Calligraphy, Flying drones"
+     }
+   }
+
+    post '/cats', params: cat_params
+    expect(response.status). to eq 422
+    cat = JSON.parse(response.body)
+    expect(cat['image']).to include "can't be blank"
+  end
+end
+
 end
